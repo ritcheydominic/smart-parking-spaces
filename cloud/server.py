@@ -15,7 +15,7 @@ def hello_world():
 def set_parking_availability():
     error = None
     cur = conn.cursor()
-    cur.execute("UPDATE parking_availability SET taken = %s, timestamp = %s WHERE space = %s", request.args.get('status', ''), datetime.datetime.now(), request.args.get('space', ''))
+    cur.execute("UPDATE parking_availability SET taken = %s, timestamp = %s WHERE space = %s", request.args.get('taken', ''), datetime.datetime.now(), request.args.get('space', ''))
     conn.commit()
     return "<p>Updated</p>"
 
