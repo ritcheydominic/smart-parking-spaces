@@ -11,7 +11,7 @@ conn = psycopg2.connect("dbname=smart_city host=localhost user=postgres password
 def hello_world():
     return "<p>Smart Parking Spaces Cloud Server</p>"
 
-@app.route('/update', methods=['POST'])
+@app.route('/update', methods=['POST', 'GET'])
 def set_parking_availability():
     error = None
     cur = conn.cursor()
