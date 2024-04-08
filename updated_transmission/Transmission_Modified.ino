@@ -172,12 +172,12 @@ float readMagnetometer() {
   Serial.print(" \tZ: ");
   Serial.print(mag.magnetic.z);
   Serial.println(" uT");
-  return mag.magnetic.z;
+  return mag.magnetic.y;
 }
 
 bool isCar(){
   float magval = readMagnetometer();
-  if(magval < 50.0){
+  if(magval < 10.0){
     return true;
   }
   return false;
@@ -189,7 +189,7 @@ int16_t packetnum = 0;  // packet counter, we increment per xmission
 char carpacket[20];
 
 void loop() {
-  delay(10000); // Wait 10 seconds between transmits, could also 'sleep' here!
+  delay(5000); // Wait 10 seconds between transmits, could also 'sleep' here!
   bool carval = isCar();
   if(carval){
     digitalWrite(MAGNETOMETER, HIGH);
