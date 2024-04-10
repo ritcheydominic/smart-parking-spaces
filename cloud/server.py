@@ -20,7 +20,7 @@ def set_parking_availability():
     return "<p>Updated</p>"
 
 @app.route('/create', methods=['POST', 'GET'])
-def set_parking_availability():
+def create_parking_space():
     error = None
     cur = conn.cursor()
     cur.execute("INSERT INTO parking_availability (timestamp, space, taken) VALUES (%s, %s, %s)", (datetime.datetime.now(), request.args.get('space',''), request.args.get('taken','')))
