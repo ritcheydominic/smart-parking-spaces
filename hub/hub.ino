@@ -224,7 +224,21 @@ void loop() {
     } else {
       //Serial.println("Receive failed");
     }
-  //}
+}
+
+void createParkingSpace() {
+    if (client.connect(server, server_port)) {
+        Serial.println("connected to server");
+        // Make a HTTP request:
+        String s = "POST /create?taken=true&space=";
+        s += space_number;
+        s += " HTTP/1.1";
+        client.println(s);
+        client.println("Host: vcm-39821.vm.duke.edu");
+        client.println("Connection: close");
+        client.println();
+        Serial.println(space_number);
+  }
 }
 
 void didDetectCar() {
@@ -233,9 +247,10 @@ void didDetectCar() {
     if (client.connect(server, server_port)) {
         Serial.println("connected to server");
         // Make a HTTP request:
-        String s = "POST /update?taken=true&space="
+        String s = "POST /update?taken=true&space=";
         s += space_number;
         s += " HTTP/1.1";
+        client.println(s);
         client.println("Host: vcm-39821.vm.duke.edu");
         client.println("Connection: close");
         client.println();
@@ -248,9 +263,10 @@ void didNotDetectCar() {
     if (client.connect(server, server_port)) {
         Serial.println("connected to server");
         // Make a HTTP request:
-        String s = "POST /update?taken=false&space="
+        String s = "POST /update?taken=false&space=";
         s += space_number;
         s += " HTTP/1.1";
+        client.println(s);
         client.println("Host: vcm-39821.vm.duke.edu");
         client.println("Connection: close");
         client.println();
